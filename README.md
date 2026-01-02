@@ -27,7 +27,7 @@ This bot is built using **Node.js** and the **Facebook Graph API** for performan
 Click the button below to fork the Nayan WhatsApp Bot repository to your GitHub account:
 
 <div align="center">
-  <a href="https://github.com/MOHAMMAD-NAYAN-07/NAYAN-WHATSAPP-BOT/fork">
+  <a href="https://github.com/MOHAMMAD-NAYAN-07/fb-page-bot/fork">
     <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="Fork the repository"/>
   </a>
 </div>
