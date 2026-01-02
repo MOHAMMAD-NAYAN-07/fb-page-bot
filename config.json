@@ -1,0 +1,9 @@
+{
+  "pageAccessToken": "",
+  "verifyToken": "pagebot",
+  "pageId": "",
+  "port": 3000,
+  "prefix": "/",
+  "botName": "Nayan Page Bot",
+  "adminUIDs": ["33053051884340425"]
+}

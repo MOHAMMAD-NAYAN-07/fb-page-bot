@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 Nayan Bot Status</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg,#89f7fe 0%,#66a6ff 100%);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#333;
+  }
+  .container {
+    background:#fff; border-radius:20px; padding:40px 60px;
+    max-width:500px; width:90%; box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    text-align:center; position:relative; transition:transform 0.3s;
+  }
+  .container:hover{transform:translateY(-5px);}
+  h1{font-size:2.2rem;color:#4CAF50;margin-bottom:20px;text-shadow:1px 1px 5px rgba(0,0,0,0.1);}
+  .info{
+    background:#f7f9fc; padding:20px; border-radius:15px;
+    box-shadow:inset 0 2px 5px rgba(0,0,0,0.05); text-align:left; margin-top:20px;
+  }
+  .info p{margin:10px 0; font-size:1rem; display:flex; justify-content:space-between; align-items:center;}
+  .info p span{font-weight:bold;color:#555;}
+  .status{display:inline-block;padding:5px 15px;border-radius:50px;color:#fff;font-weight:bold;margin-left:10px;}
+  .online{background:#4CAF50;}
+  .offline{background:#f44336;}
+  .copy-btn{background:#4CAF50;color:#fff;border:none;padding:8px 15px;border-radius:8px;cursor:pointer;font-size:0.95rem;}
+  .copy-btn:hover{background:#45a049;}
+  footer{margin-top:30px;font-size:0.85rem;color:#777;}
+  @media(max-width:600px){.container{padding:30px 20px;}h1{font-size:1.8rem;}.info p{font-size:0.95rem;}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🤖 Nayan Bot</h1>
+<div class="info">
+  <p>Page Name: <span id="pageName">Loading...</span></p>
+  <p>Page ID: <span id="pageId">Loading...</span></p>
+  <p>Status: <span id="status" class="status online">Online</span></p>
+  <p>Server Time: <span id="time">--:--</span></p>
+  <p>Node.js Version: <span id="nodeVersion">--</span></p>
+  <p>Mode: <span id="mode">Production</span></p>
+  <p>
+    Webhook:
+    <button class="copy-btn" onclick="copyWebhook()">Copy Webhook</button>
+  </p>
+</div>
+<footer>💻 Designed by Mohammad Nayan</footer>
+</div>
+
+<script>
+function updateTime(){
+  const dhakaTime = new Date().toLocaleString('en-US',{timeZone:'Asia/Dhaka'});
+  document.getElementById('time').innerText = dhakaTime;
+}
+updateTime();
+setInterval(updateTime,1000);
+
+
+async function fetchBotInfo(){
+  try{
+    const res = await fetch('/botinfo');
+    if(res.ok){
+      const data = await res.json();
+      if (data.name === "Loading..."){
+        document.getElementById('status').classList.remove('online')
+        document.getElementById('status').classList.add('offline')
+      }
+      document.getElementById('pageName').innerText = data.name || "Loading...";
+      document.getElementById('pageId').innerText = data.id || "Loading...";
+      document.getElementById('nodeVersion').innerText = data.nodeVersion || "Loading...";
+      document.getElementById('mode').innerText = data.mode || "Production";
+    }
+  }catch(e){
+    console.log("Failed to fetch bot info:",e);
+  }
+}
+fetchBotInfo();
+
+
+function copyWebhook(){
+  const webhookURL = `${window.location.origin}/webhook`;
+  navigator.clipboard.writeText(webhookURL).then(()=>{
+    alert('Webhook URL copied to clipboard!');
+  }).catch(err=>{
+    alert('Failed to copy: '+err);
+  });
+}
+</script>
+</body>
+</html>

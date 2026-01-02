@@ -1,0 +1,33 @@
+{
+  "name": "fb-page-bot",
+  "version": "1.0.0",
+  "description": "Facebook Page Messenger Bot with ban control & logging system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "test": "echo \"No tests available\""
+  },
+  "keywords": [
+    "facebook",
+    "fb-page-bot",
+    "messenger-bot",
+    "nodejs",
+    "automation",
+    "nayan-bot"
+  ],
+  "author": "Mohammad Nayan",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2",
+    "request": "^2.88.2",
+    "winston": "^3.13.0",
+    "yt-search": "^2.13.1"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
